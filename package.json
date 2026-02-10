@@ -1,0 +1,14 @@
+{
+    "name": "carefree",
+    "version": "1.0.0",
+    "description": "CAReFree - Student Car Rental Platform",
+    "scripts": {
+        "server": "cd server && npx nodemon server.js",
+        "client": "cd client && npm run dev",
+        "dev": "npx concurrently \"npm run server\" \"npm run client\"",
+        "seed": "cd server && node seed.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}

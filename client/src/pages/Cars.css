@@ -1,0 +1,93 @@
+.cars-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.filter-toggle {
+    display: none;
+    margin-bottom: 16px;
+}
+
+.filter-sidebar {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    height: fit-content;
+    position: sticky;
+    top: calc(var(--navbar-height) + 20px);
+}
+
+.filter-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.filter-header h3 {
+    font-size: 1.125rem;
+}
+
+.filter-group {
+    margin-bottom: 18px;
+}
+
+.filter-price-range {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-price-range .form-input {
+    flex: 1;
+}
+
+.filter-price-range span {
+    color: var(--text-muted);
+}
+
+.cars-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.cars-count {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.sort-select {
+    width: auto;
+    min-width: 180px;
+}
+
+@media (max-width: 768px) {
+    .cars-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-toggle {
+        display: flex;
+    }
+
+    .filter-sidebar {
+        display: none;
+        position: fixed;
+        top: var(--navbar-height);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 100;
+        border-radius: 0;
+        overflow-y: auto;
+    }
+
+    .filter-sidebar.open {
+        display: block;
+    }
+}

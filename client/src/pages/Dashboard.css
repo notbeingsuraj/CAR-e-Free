@@ -1,0 +1,124 @@
+.profile-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 24px;
+}
+
+.profile-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.profile-info h3 {
+    font-size: 1.125rem;
+    margin-bottom: 2px;
+}
+
+.profile-info p {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.profile-status {
+    margin-left: auto;
+}
+
+.booking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 40px;
+}
+
+.booking-item {
+    display: flex;
+    gap: 20px;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.booking-item:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.booking-img {
+    width: 140px;
+    height: 100px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.booking-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.booking-details {
+    flex: 1;
+}
+
+.booking-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.booking-top h4 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.booking-cost {
+    font-size: 1.25rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    color: var(--primary);
+}
+
+.booking-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.booking-meta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+    .booking-item {
+        flex-direction: column;
+    }
+
+    .booking-img {
+        width: 100%;
+        height: 160px;
+    }
+
+    .profile-card {
+        flex-wrap: wrap;
+    }
+}
