@@ -4,19 +4,19 @@
     gap: 4px;
     font-size: 14px;
     color: var(--text-muted);
-    margin: 20px 0;
+    margin: 16px 0;
     transition: var(--transition);
 }
 
 .back-link:hover {
-    color: var(--primary);
+    color: var(--text-primary);
 }
 
 .detail-layout {
     display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 32px;
-    padding-bottom: 60px;
+    grid-template-columns: 1fr 360px;
+    gap: 28px;
+    padding-bottom: 48px;
 }
 
 /* Gallery */
@@ -24,7 +24,8 @@
     border-radius: var(--radius-lg);
     overflow: hidden;
     height: 400px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
 }
 
 .gallery-main img {
@@ -39,8 +40,8 @@
 }
 
 .gallery-thumb {
-    width: 80px;
-    height: 60px;
+    width: 76px;
+    height: 56px;
     border-radius: var(--radius-sm);
     overflow: hidden;
     border: 2px solid transparent;
@@ -51,7 +52,7 @@
 }
 
 .gallery-thumb.active {
-    border-color: var(--primary);
+    border-color: var(--text-primary);
 }
 
 .gallery-thumb img {
@@ -62,36 +63,36 @@
 
 /* Info */
 .detail-info {
-    margin-top: 32px;
+    margin-top: 28px;
 }
 
 .detail-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .detail-brand {
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 600;
     color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
     margin-bottom: 4px;
 }
 
 .detail-header h1 {
-    font-size: 2rem;
+    font-size: 1.75rem;
 }
 
 .detail-rating {
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 1.125rem;
+    gap: 5px;
+    font-size: 1rem;
     font-weight: 700;
-    color: var(--warning);
+    color: var(--text-primary);
 }
 
 .rating-count {
@@ -103,52 +104,53 @@
 .detail-specs {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 32px;
+    gap: 12px;
+    margin-bottom: 28px;
 }
 
 .spec-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 16px;
+    gap: 10px;
+    padding: 14px;
     background: var(--surface-alt);
     border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
 }
 
 .spec-item strong {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .spec-item span {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-muted);
 }
 
 .detail-section {
-    margin-bottom: 28px;
+    margin-bottom: 24px;
 }
 
 .detail-section h3 {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 1.125rem;
-    margin-bottom: 12px;
+    gap: 6px;
+    font-size: 1rem;
+    margin-bottom: 10px;
 }
 
 .feature-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
 }
 
 .rules-text {
     font-size: 14px;
     color: var(--text-secondary);
     background: var(--warning-light);
-    padding: 14px 18px;
+    padding: 12px 16px;
     border-radius: var(--radius-md);
     border-left: 3px solid var(--warning);
     line-height: 1.6;
@@ -157,87 +159,88 @@
 /* Booking Card */
 .booking-card {
     position: sticky;
-    top: calc(var(--navbar-height) + 20px);
+    top: calc(var(--navbar-height) + 16px);
     height: fit-content;
 }
 
 .booking-card-inner {
     background: var(--surface);
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
     overflow: hidden;
 }
 
 .booking-prices {
     display: flex;
-    padding: 24px;
-    border-bottom: 1px solid var(--border-light);
-    gap: 20px;
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    gap: 16px;
 }
 
 .booking-price {
     display: flex;
     align-items: baseline;
-    gap: 4px;
+    gap: 3px;
 }
 
 .price-big {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-weight: 800;
     font-family: var(--font-heading);
-    color: var(--primary);
+    color: var(--text-primary);
 }
 
 .booking-price.secondary .price-big {
-    font-size: 1.25rem;
-    color: var(--text-secondary);
+    font-size: 1.125rem;
+    color: var(--text-muted);
 }
 
 .price-label {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--text-muted);
 }
 
 .booking-form {
-    padding: 24px;
+    padding: 20px;
 }
 
 .cost-breakdown {
     background: var(--surface-alt);
     border-radius: var(--radius-md);
-    padding: 16px;
-    margin-bottom: 16px;
+    padding: 14px;
+    margin-bottom: 14px;
+    border: 1px solid var(--border-light);
 }
 
 .cost-row {
     display: flex;
     justify-content: space-between;
-    padding: 6px 0;
+    padding: 5px 0;
     font-size: 14px;
     color: var(--text-secondary);
 }
 
 .cost-row.total {
     border-top: 1px solid var(--border);
-    margin-top: 8px;
-    padding-top: 12px;
-    font-size: 16px;
+    margin-top: 6px;
+    padding-top: 10px;
+    font-size: 15px;
     color: var(--text-primary);
 }
 
 .cost-row.total strong {
-    color: var(--primary);
-    font-size: 1.25rem;
+    color: var(--text-primary);
+    font-size: 1.125rem;
 }
 
 .booking-note {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    font-size: 13px;
+    gap: 5px;
+    font-size: 12px;
     color: var(--text-muted);
-    margin-top: 12px;
+    margin-top: 10px;
     text-align: center;
 }
 
@@ -247,7 +250,7 @@
     }
 
     .gallery-main {
-        height: 260px;
+        height: 240px;
     }
 
     .detail-specs {
