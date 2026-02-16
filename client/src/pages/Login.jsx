@@ -48,8 +48,9 @@ const Login = () => {
             await sendOtp(phone);
             setOtpStep('otp');
             toast.success('OTP sent successfully!');
-        } catch {
-            toast.error('Failed to send OTP');
+        } catch (err) {
+            console.error('OTP ERROR:', err);
+            toast.error(err.code || err.message || 'Failed to send OTP');
         } finally {
             setLoading(false);
         }
@@ -65,8 +66,9 @@ const Login = () => {
             toast.success('Phone verified!');
             console.log('Logged in user:', user);
             navigate('/dashboard');
-        } catch {
-            toast.error('Invalid OTP');
+        } catch (err) {
+            console.error('VERIFY ERROR:', err);
+            toast.error(err.code || err.message || 'Invalid OTP');
         } finally {
             setLoading(false);
         }
