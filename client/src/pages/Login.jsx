@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { sendOtp, verifyOtp } from '../services/authService';
+import { sendOtp, verifyOtp, createUserProfile } from '../services/authService';
 import { FiMail, FiLock, FiArrowRight, FiPhone, FiHash } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 import './Auth.css';
@@ -30,6 +30,7 @@ const Login = () => {
         setLoading(true);
         try {
             const userData = await login(email, password);
+            await createUserProfile({ uid: userData._id || userData.id, email, phoneNumber: null, ...userData });
             toast.success(`Welcome back, ${userData.name}!`);
             navigate(userData.role === 'admin' ? '/admin' : '/dashboard');
         } catch (err) {
@@ -63,6 +64,7 @@ const Login = () => {
         setLoading(true);
         try {
             const user = await verifyOtp(otp);
+            await createUserProfile(user);
             toast.success('Phone verified!');
             console.log('Logged in user:', user);
             navigate('/dashboard');
