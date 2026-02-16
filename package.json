@@ -3,6 +3,8 @@
     "version": "1.0.0",
     "description": "CAReFree - Student Car Rental Platform",
     "scripts": {
+        "install:client": "cd client && npm install",
+        "build": "cd client && npm run build",
         "server": "cd server && npx nodemon server.js",
         "client": "cd client && npm run dev",
         "dev": "npx concurrently \"npm run server\" \"npm run client\"",
