@@ -1,8 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './context/AuthContext';
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase";
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -13,12 +11,6 @@ import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import './index.css';
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    console.log("User logged in:", user.phoneNumber);
-  }
-});
 
 function App() {
   return (

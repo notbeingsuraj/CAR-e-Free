@@ -1,12 +1,80 @@
-const express = require('express');
-const router = express.Router();
-const { register, login, getMe, updateProfile } = require('../controllers/authController');
-const { protect } = require('../middleware/auth');
-const upload = require('../middleware/upload');
+const express = require("express");
+const jwt = require("jsonwebtoken");
+const User = require("../models/User");
+const auth = require("../middleware/auth");
 
-router.post('/register', register);
-router.post('/login', login);
-router.get('/me', protect, getMe);
-router.put('/profile', protect, upload.single('idCard'), updateProfile);
+const router = express.Router();
+
+/**
+ * SIGNUP
+ * Creates user if not exists
+ */
+router.post("/signup", async (req, res) => {
+    try {
+        const { phone, name } = req.body;
+
+        if (!phone) {
+            return res.status(400).json({ msg: "Phone number required" });
+        }
+
+        let user = await User.findOne({ phone });
+
+        if (user) {
+            return res.status(400).json({ msg: "User already exists" });
+        }
+
+        user = await User.create({ phone, name });
+
+        const token = jwt.sign(
+            { id: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: "7d" }
+        );
+
+        res.status(201).json({ token, user });
+
+    } catch (err) {
+        res.status(500).json({ msg: "Server error" });
+    }
+});
+
+/**
+ * LOGIN
+ * Finds user by phone
+ */
+router.post("/login", async (req, res) => {
+    try {
+        const { phone } = req.body;
+
+        const user = await User.findOne({ phone });
+        if (!user) {
+            return res.status(404).json({ msg: "User not found" });
+        }
+
+        const token = jwt.sign(
+            { id: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: "7d" }
+        );
+
+        res.json({ token, user });
+
+    } catch (err) {
+        res.status(500).json({ msg: "Server error" });
+    }
+});
+
+/**
+ * GET USER
+ * Returns current user data
+ */
+router.get("/me", auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user);
+        res.json(user);
+    } catch (err) {
+        res.status(500).json({ msg: "Server error" });
+    }
+});
 
 module.exports = router;

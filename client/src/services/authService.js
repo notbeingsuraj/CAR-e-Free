@@ -1,57 +1,60 @@
-import { auth, db } from "../firebase";
-import {
-    RecaptchaVerifier,
-    signInWithPhoneNumber,
-} from "firebase/auth";
-import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
+const API_URL = "http://localhost:5001/api/auth";
 
-let confirmationResult = null;
+export const signup = async (phone, name) => {
+    const res = await fetch(`${API_URL}/signup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone, name }),
+    });
 
-export const sendOtp = async (phone) => {
-    if (!window.recaptchaVerifier) {
-        window.recaptchaVerifier = new RecaptchaVerifier(
-            auth,
-            "recaptcha-container",
-            { size: "invisible" }
-        );
+    const data = await res.json();
+
+    if (!res.ok) {
+        throw new Error(data.msg || "Signup failed");
     }
 
-    confirmationResult = await signInWithPhoneNumber(
-        auth,
-        phone,
-        window.recaptchaVerifier
-    );
-
-    return true;
+    localStorage.setItem("token", data.token);
+    return data;
 };
 
-export const verifyOtp = async (otp) => {
-    if (!confirmationResult) {
-        throw new Error("OTP not requested");
+export const login = async (phone) => {
+    const res = await fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+        throw new Error(data.msg || "Login failed");
     }
 
-    const result = await confirmationResult.confirm(otp);
-    return result.user;
+    localStorage.setItem("token", data.token);
+    return data;
 };
 
-// Create user document in Firestore (only on first login)
-export const createUserProfile = async (user) => {
-    const userRef = doc(db, "users", user.uid);
-    const snap = await getDoc(userRef);
+export const fetchCurrentUser = async () => {
+    const token = getToken();
+    if (!token) return null;
 
-    if (!snap.exists()) {
-        await setDoc(userRef, {
-            uid: user.uid,
-            email: user.email || null,
-            phone: user.phoneNumber || null,
-            authProvider: user.email ? "email" : "phone",
-            createdAt: serverTimestamp(),
-            role: "user",
-        });
-        console.log("User profile created in Firestore");
-    } else {
-        console.log("User profile already exists");
+    const res = await fetch(`${API_URL}/me`, {
+        method: "GET",
+        headers: {
+            "x-auth-token": token
+        }
+    });
+
+    if (!res.ok) {
+        logout();
+        return null;
     }
 
-    return snap.exists() ? snap.data() : { uid: user.uid, role: "user" };
+    return await res.json();
 };
+
+export const getToken = () => localStorage.getItem("token");
+
+export const logout = () => localStorage.removeItem("token");
+
+export const isLoggedIn = () => !!getToken();

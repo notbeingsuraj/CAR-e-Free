@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import api from '../services/api';
+import { login as apiLogin, signup as apiSignup, logout as apiLogout, fetchCurrentUser } from '../services/authService';
 
 const AuthContext = createContext(null);
 
@@ -10,48 +10,35 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        const savedUser = localStorage.getItem('user');
-        if (token && savedUser) {
-            setUser(JSON.parse(savedUser));
-            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        }
-        setLoading(false);
+        const loadUser = async () => {
+            const userData = await fetchCurrentUser();
+            if (userData) {
+                setUser(userData);
+            }
+            setLoading(false);
+        };
+        loadUser();
     }, []);
 
-    const login = async (email, password) => {
-        const { data } = await api.post('/auth/login', { email, password });
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data));
-        api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
-        setUser(data);
+    const login = async (phone) => {
+        const data = await apiLogin(phone);
+        setUser(data.user);
         return data;
     };
 
-    const register = async (userData) => {
-        const { data } = await api.post('/auth/register', userData);
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data));
-        api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
-        setUser(data);
+    const signup = async (phone, name) => {
+        const data = await apiSignup(phone, name);
+        setUser(data.user);
         return data;
     };
 
     const logout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        delete api.defaults.headers.common['Authorization'];
+        apiLogout();
         setUser(null);
     };
 
-    const updateUser = (updatedData) => {
-        const newUser = { ...user, ...updatedData };
-        localStorage.setItem('user', JSON.stringify(newUser));
-        setUser(newUser);
-    };
-
     return (
-        <AuthContext.Provider value={{ user, loading, login, register, logout, updateUser }}>
+        <AuthContext.Provider value={{ user, loading, login, signup, logout }}>
             {children}
         </AuthContext.Provider>
     );
