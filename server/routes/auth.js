@@ -11,30 +11,19 @@ const router = express.Router();
  */
 router.post("/signup", async (req, res) => {
     try {
-        const { phone, name } = req.body;
+        const { phone } = req.body;
 
-        if (!phone) {
-            return res.status(400).json({ msg: "Phone number required" });
-        }
-
-        let user = await User.findOne({ phone });
-
-        if (user) {
-            return res.status(400).json({ msg: "User already exists" });
-        }
-
-        user = await User.create({ phone, name });
-
-        const token = jwt.sign(
-            { id: user._id },
-            process.env.JWT_SECRET,
-            { expiresIn: "7d" }
-        );
-
-        res.status(201).json({ token, user });
-
+        // TEMP: no DB, just return success
+        return res.json({
+            success: true,
+            user: { phone },
+            token: "temp_debug_token" // Adding a temp token to prevent frontend crash on localStorage set
+        });
     } catch (err) {
-        res.status(500).json({ msg: "Server error" });
+        return res.status(500).json({
+            success: false,
+            error: err.message
+        });
     }
 });
 

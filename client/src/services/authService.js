@@ -1,5 +1,22 @@
 const API_URL = "/api/auth";
 
+const handleResponse = async (res) => {
+    const text = await res.text();
+    console.log("RAW RESPONSE:", text);
+    let data;
+    try {
+        data = JSON.parse(text);
+    } catch (err) {
+        console.error("Response is not JSON:", text);
+        throw new Error("Invalid server response: " + text.substring(0, 50));
+    }
+
+    if (!res.ok) {
+        throw new Error(data.msg || "Request failed");
+    }
+    return data;
+};
+
 export const signup = async (phone, name) => {
     const res = await fetch(`${API_URL}/signup`, {
         method: "POST",
@@ -7,12 +24,7 @@ export const signup = async (phone, name) => {
         body: JSON.stringify({ phone, name }),
     });
 
-    const data = await res.json();
-
-    if (!res.ok) {
-        throw new Error(data.msg || "Signup failed");
-    }
-
+    const data = await handleResponse(res);
     localStorage.setItem("token", data.token);
     return data;
 };
@@ -24,12 +36,7 @@ export const login = async (phone) => {
         body: JSON.stringify({ phone }),
     });
 
-    const data = await res.json();
-
-    if (!res.ok) {
-        throw new Error(data.msg || "Login failed");
-    }
-
+    const data = await handleResponse(res);
     localStorage.setItem("token", data.token);
     return data;
 };
