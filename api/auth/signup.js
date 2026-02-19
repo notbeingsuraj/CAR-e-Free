@@ -19,6 +19,10 @@ export default async function handler(req, res) {
             return res.status(405).json({ error: "Method not allowed" });
         }
 
+        if (!req.body) {
+            return res.status(400).json({ error: "Missing request body" });
+        }
+
         const { email, password } = req.body;
 
         if (!email || !password) {
@@ -41,11 +45,11 @@ export default async function handler(req, res) {
             message: "Signup successful"
         });
     } catch (err) {
-        console.error("SIGNUP ERROR FULL:", err);
+        console.error("SIGNUP CRASH:", err);
         return res.status(500).json({
             error: "Internal server error",
             detail: err.message,
-            stack: err.stack
+            name: err.name
         });
     }
 }
