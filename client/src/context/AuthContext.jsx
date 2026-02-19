@@ -20,15 +20,17 @@ export const AuthProvider = ({ children }) => {
         loadUser();
     }, []);
 
-    const login = async (phone) => {
-        const data = await apiLogin(phone);
+    const login = async (email, password) => {
+        const data = await apiLogin(email, password);
         setUser(data.user);
+        toast.success('Logged in successfully');
         return data;
     };
 
-    const signup = async (phone, name) => {
-        const data = await apiSignup(phone, name);
+    const signup = async (email, password, name) => {
+        const data = await apiSignup(email, password, name);
         setUser(data.user);
+        toast.success('Signed up successfully');
         return data;
     };
 

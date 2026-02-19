@@ -15,23 +15,23 @@ const handleResponse = async (res) => {
     return data;
 };
 
-export const signup = async (phone, name) => {
+export const signup = async (email, password, name) => {
     const res = await fetch(`${API_URL}/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone, name }),
+        body: JSON.stringify({ email, password, name }),
     });
 
     const data = await handleResponse(res);
-    localStorage.setItem("token", data.token);
+    localStorage.setItem("token", data.token); // Assuming backend returns token on signup too, or just data.token if that's the structure
     return data;
 };
 
-export const login = async (phone) => {
+export const login = async (email, password) => {
     const res = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone }),
+        body: JSON.stringify({ email, password }),
     });
 
     const data = await handleResponse(res);
