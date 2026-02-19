@@ -2,5 +2,23 @@
     "buildCommand": "npm run build",
     "outputDirectory": "dist",
     "framework": "vite",
-    "installCommand": "npm install"
+    "installCommand": "npm install",
+    "rewrites": [
+        {
+            "source": "/api/auth/signup",
+            "destination": "/api/signup"
+        },
+        {
+            "source": "/api/auth/login",
+            "destination": "/api/login"
+        },
+        {
+            "source": "/api/auth/me",
+            "destination": "/api/me"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/client/index.html"
+        }
+    ]
 }
