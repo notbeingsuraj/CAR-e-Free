@@ -41,10 +41,11 @@ export default async function handler(req, res) {
             message: "Signup successful"
         });
     } catch (err) {
-        console.error("SIGNUP ERROR:", err);
+        console.error("SIGNUP ERROR FULL:", err);
         return res.status(500).json({
             error: "Internal server error",
-            detail: err.message
+            detail: err.message,
+            stack: err.stack
         });
     }
 }
