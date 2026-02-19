@@ -5,16 +5,8 @@
     "installCommand": "npm install",
     "rewrites": [
         {
-            "source": "/api/auth/signup",
-            "destination": "/api/signup"
-        },
-        {
-            "source": "/api/auth/login",
-            "destination": "/api/login"
-        },
-        {
-            "source": "/api/auth/me",
-            "destination": "/api/me"
+            "source": "/api/auth/:match*",
+            "destination": "/api/auth/:match*"
         },
         {
             "source": "/(.*)",
