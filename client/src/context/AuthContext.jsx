@@ -11,26 +11,29 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const loadUser = async () => {
-            const userData = await fetchCurrentUser();
-            if (userData) {
-                setUser(userData);
+            try {
+                const userData = await fetchCurrentUser();
+                if (userData) {
+                    setUser(userData);
+                }
+            } catch (err) {
+                console.error('Failed to load user:', err);
+            } finally {
+                setLoading(false);
             }
-            setLoading(false);
         };
         loadUser();
     }, []);
 
     const login = async (email, password) => {
         const data = await apiLogin(email, password);
-        setUser(data.user);
-        toast.success('Logged in successfully');
+        setUser(data.user || data);
         return data;
     };
 
     const signup = async (email, password, name) => {
         const data = await apiSignup(email, password, name);
-        setUser(data.user);
-        toast.success('Signed up successfully');
+        setUser(data.user || data);
         return data;
     };
 
