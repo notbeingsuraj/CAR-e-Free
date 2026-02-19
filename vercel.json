@@ -1,0 +1,11 @@
+{
+    "buildCommand": "npm run build",
+    "outputDirectory": "client/dist",
+    "framework": "vite",
+    "installCommand": "npm install --prefix client",
+    "functions": {
+        "api/**/*.js": {
+            "runtime": "nodejs18.x"
+        }
+    }
+}
