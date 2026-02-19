@@ -1,9 +1,9 @@
 import bcrypt from "bcryptjs";
-import { connectDB } from "../../api/util/db";
-import User from "../../api/models/User";
+import { connectDB } from "../util/db";
+import User from "../models/User";
 
 export default async function handler(req, res) {
-    // CORS Headers
+    // ... CORS headers ...
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -14,17 +14,17 @@ export default async function handler(req, res) {
         return;
     }
 
-    if (req.method !== "POST") {
-        return res.status(405).json({ error: "Method not allowed" });
-    }
-
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-        return res.status(400).json({ error: "Email and password required" });
-    }
-
     try {
+        if (req.method !== "POST") {
+            return res.status(405).json({ error: "Method not allowed" });
+        }
+
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).json({ error: "Email and password required" });
+        }
+
         await connectDB();
 
         const existingUser = await User.findOne({ email });
@@ -41,7 +41,10 @@ export default async function handler(req, res) {
             message: "Signup successful"
         });
     } catch (err) {
-        console.error(err);
-        return res.status(500).json({ error: "Server error", details: err.message });
+        console.error("SIGNUP ERROR:", err);
+        return res.status(500).json({
+            error: "Internal server error",
+            detail: err.message
+        });
     }
 }

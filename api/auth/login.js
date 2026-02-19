@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
-import { connectDB } from "../../api/util/db";
-import User from "../../api/models/User";
+import { connectDB } from "../util/db";
+import User from "../models/User";
 
 export default async function handler(req, res) {
     // CORS Headers

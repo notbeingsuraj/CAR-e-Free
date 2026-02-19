@@ -1,5 +1,5 @@
-import connectDB from "../../api/util/db";
-import User from "../../server/models/User";
+import { connectDB } from "../util/db";
+import User from "../models/User";
 import jwt from "jsonwebtoken";
 
 export default async function handler(req, res) {
