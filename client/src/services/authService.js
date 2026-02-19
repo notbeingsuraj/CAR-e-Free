@@ -16,27 +16,65 @@ const handleResponse = async (res) => {
 };
 
 export const signup = async (email, password, name) => {
-    const res = await fetch(`${API_URL}/signup`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, name }),
-    });
+    try {
+        const res = await fetch(`${API_URL}/signup`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password, name }),
+        });
 
-    const data = await handleResponse(res);
-    localStorage.setItem("token", data.token); // Assuming backend returns token on signup too, or just data.token if that's the structure
-    return data;
+        const text = await res.text();
+        let data;
+        try {
+            data = JSON.parse(text);
+        } catch {
+            throw new Error(`Non-JSON response: ${text.substring(0, 50)}...`);
+        }
+
+        if (!res.ok) {
+            throw new Error(data.error || data.detail || data.msg || "Signup failed");
+        }
+
+        // Handle token storage if signup logs user in directly
+        if (data.token) {
+            localStorage.setItem("token", data.token);
+        }
+
+        return data;
+    } catch (err) {
+        console.error("SIGNUP ERROR:", err);
+        throw err;
+    }
 };
 
 export const login = async (email, password) => {
-    const res = await fetch(`${API_URL}/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-    });
+    try {
+        const res = await fetch(`${API_URL}/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+        });
 
-    const data = await handleResponse(res);
-    localStorage.setItem("token", data.token);
-    return data;
+        const text = await res.text();
+        let data;
+        try {
+            data = JSON.parse(text);
+        } catch {
+            throw new Error(`Non-JSON response: ${text.substring(0, 50)}...`);
+        }
+
+        if (!res.ok) {
+            throw new Error(data.error || data.detail || data.msg || "Login failed");
+        }
+
+        if (data.token) {
+            localStorage.setItem("token", data.token);
+        }
+        return data;
+    } catch (err) {
+        console.error("LOGIN ERROR:", err);
+        throw err;
+    }
 };
 
 export const fetchCurrentUser = async () => {
