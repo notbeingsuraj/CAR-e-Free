@@ -1,9 +1,9 @@
-import connectDB from "../../api/util/db";
-import User from "../../server/models/User";
-import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+import { connectDB } from "../../api/util/db";
+import User from "../../api/models/User";
 
 export default async function handler(req, res) {
-    // CORS (Optional for same-domain like this, but good practice)
+    // CORS Headers
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -18,30 +18,28 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: "Method not allowed" });
     }
 
-    try {
-        const { phone, name } = req.body;
+    const { email, password } = req.body;
 
-        if (!phone) {
-            return res.status(400).json({ error: "Phone number required" });
+    if (!email || !password) {
+        return res.status(400).json({ error: "Email and password required" });
+    }
+
+    try {
+        await connectDB();
+
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(409).json({ error: "User already exists" });
         }
 
-        // DB Logic - Commented out for initial connectivity test as requested
-        /*
-        await connectDB();
-        let user = await User.findOne({ phone });
-        if (user) return res.status(400).json({ error: "User already exists" });
-        user = await User.create({ phone, name });
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
-        */
+        const passwordHash = await bcrypt.hash(password, 12);
 
-        // Mock Success Response
-        return res.status(200).json({
+        await User.create({ email, passwordHash });
+
+        return res.status(201).json({
             success: true,
-            phone,
-            name,
-            token: "mock-vercel-token"
+            message: "Signup successful"
         });
-
     } catch (err) {
         console.error(err);
         return res.status(500).json({ error: "Server error", details: err.message });

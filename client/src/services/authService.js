@@ -1,14 +1,12 @@
 const API_URL = "/api/auth";
 
 const handleResponse = async (res) => {
-    const text = await res.text();
-    console.log("RAW RESPONSE:", text);
     let data;
     try {
-        data = JSON.parse(text);
+        data = await res.json();
     } catch (err) {
-        console.error("Response is not JSON:", text);
-        throw new Error("Invalid server response: " + text.substring(0, 50));
+        console.error("Response is not JSON");
+        throw new Error("Invalid server response");
     }
 
     if (!res.ok) {
