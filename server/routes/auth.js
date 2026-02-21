@@ -51,12 +51,18 @@ router.post("/signup", async (req, res) => {
                 isVerified: user.isVerified,
             }
         });
-    } catch (err) {
-        console.error("Signup error:", err);
+    } catch (error) {
+        console.error("Signup error:", error.message);
+
+        // Handle duplicate key error
+        if (error.code === 11000) {
+            return res.status(409).json({ msg: "User already exists" });
+        }
+
         res.status(500).json({
             success: false,
             msg: "Server error during signup",
-            error: err.message
+            error: error.message
         });
     }
 });
@@ -113,7 +119,7 @@ router.post("/login", async (req, res) => {
             }
         });
     } catch (err) {
-        console.error("Login error:", err);
+        console.error("Login error:", err.message);
         res.status(500).json({
             success: false,
             msg: "Server error during login",
@@ -135,7 +141,7 @@ router.get("/me", auth, async (req, res) => {
         }
         res.json(user);
     } catch (err) {
-        console.error("Get user error:", err);
+        console.error("Get user error:", err.message);
         res.status(500).json({ msg: "Server error" });
     }
 });
