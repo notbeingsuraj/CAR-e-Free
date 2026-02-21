@@ -8,10 +8,9 @@ const cars = [
     {
         name: 'Alto K10',
         brand: 'Maruti Suzuki',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/159587/alto-k10-exterior-right-front-three-quarter.jpeg',
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/159587/alto-k10-exterior-rear-view.jpeg',
-        ],
+        year: 2024,
+        description: 'India\'s most loved entry-level hatchback. Powered by a 1.0L K10C DualJet engine producing 67 PS, the Alto K10 offers an impressive 24.39 km/l mileage. Features 6 airbags, ABS with EBD, and an optional AGS automatic transmission. Perfect for city commutes with its compact 3530mm length and 4.5m turning radius.',
+        images: ['/cars/alto-k10.png'],
         seats: 4,
         fuelType: 'Petrol',
         transmission: 'Manual',
@@ -27,10 +26,9 @@ const cars = [
     {
         name: 'Baleno',
         brand: 'Maruti Suzuki',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/159607/baleno-exterior-right-front-three-quarter.jpeg',
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/159607/baleno-exterior-right-rear-three-quarter.jpeg',
-        ],
+        year: 2024,
+        description: 'Nexa\'s premium hatchback with a bold design and SmartPlay Pro+ infotainment. The Baleno packs a 1.2L DualJet engine with 90 PS, delivering 22.35 km/l. Features include a 9-inch HD SmartPlay Pro+ touchscreen, 360-degree camera, heads-up display, and 6 airbags. A coupe-like silhouette makes it stand out in the premium hatchback segment.',
+        images: ['/cars/baleno.png'],
         seats: 5,
         fuelType: 'Petrol',
         transmission: 'Manual',
@@ -46,10 +44,9 @@ const cars = [
     {
         name: 'i20',
         brand: 'Hyundai',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/150603/i20-exterior-right-front-three-quarter-3.jpeg',
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/150603/i20-exterior-right-rear-three-quarter.jpeg',
-        ],
+        year: 2024,
+        description: 'The sporty premium hatchback from Hyundai with segment-first features. Powered by a 1.2L Kappa engine (88 PS) or a 1.0L Turbo GDi (120 PS). Boasts a 10.25-inch touchscreen, Bose premium audio, sunroof, wireless charging, and BlueLink connected car technology. The parametric jewel-pattern grille and Z-shaped LED tail lamps define its bold design.',
+        images: ['/cars/i20.png'],
         seats: 5,
         fuelType: 'Petrol',
         transmission: 'Manual',
@@ -65,10 +62,9 @@ const cars = [
     {
         name: 'Fronx',
         brand: 'Maruti Suzuki',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/159099/fronx-exterior-right-front-three-quarter.jpeg',
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/159099/fronx-exterior-right-rear-three-quarter.jpeg',
-        ],
+        year: 2024,
+        description: 'Nexa\'s stylish coupe-SUV crossover with a floating roof design. Available with a 1.0L BoosterJet turbo engine (100 PS) or 1.2L DualJet. Features include a heads-up display, wireless charging, 360-degree camera, and Suzuki Connect. Its bold design with contrast roof and sporty LED lighting makes it a head-turner.',
+        images: ['/cars/fronx.png'],
         seats: 5,
         fuelType: 'Petrol',
         transmission: 'Automatic',
@@ -84,9 +80,9 @@ const cars = [
     {
         name: 'Polo',
         brand: 'Volkswagen',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/48542/polo-exterior-right-front-three-quarter-2.jpeg',
-        ],
+        year: 2022,
+        description: 'The legendary German-engineered hatchback that set benchmarks in India. Powered by a refined 1.0L TSI turbo-petrol producing 110 PS and 175 Nm. Known for its rock-solid build quality, precise steering, and fun-to-drive character. Though discontinued, the Polo remains a cult classic among driving enthusiasts with its European DNA and timeless design.',
+        images: ['/cars/polo.png'],
         seats: 5,
         fuelType: 'Petrol',
         transmission: 'Manual',
@@ -104,10 +100,9 @@ const cars = [
     {
         name: 'Swift Dzire',
         brand: 'Maruti Suzuki',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/159099/dzire-exterior-right-front-three-quarter.jpeg',
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/159099/dzire-exterior-right-rear-three-quarter.jpeg',
-        ],
+        year: 2024,
+        description: 'India\'s best-selling compact sedan, now in its all-new 4th generation. Features a 1.2L Z-Series engine with 82 PS and segment-best 24.79 km/l mileage. Highlights include a 9-inch touchscreen, wireless CarPlay/Android Auto, 6 airbags, ESP, and a spacious 382L boot. The new design with sleek LED headlamps and alloy wheels gives it a premium appeal.',
+        images: ['/cars/swift-dzire.png'],
         seats: 5,
         fuelType: 'Petrol',
         transmission: 'Manual',
@@ -123,10 +118,9 @@ const cars = [
     {
         name: 'Verna',
         brand: 'Hyundai',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/144999/verna-exterior-right-front-three-quarter-2.jpeg',
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/144999/verna-exterior-right-rear-three-quarter.jpeg',
-        ],
+        year: 2024,
+        description: 'The 6th-generation Hyundai Verna with a 5-star Global NCAP safety rating. Choose between a 1.5L NA (113 PS) or 1.5L Turbo GDi (160 PS) with a 7-speed DCT. Loaded with ADAS Level 2, ventilated seats, Bose audio, 64-color ambient lighting, and a 10.25-inch digital cluster. The bold design with connected DRLs and parametric grille makes it a stunner.',
+        images: ['/cars/verna.png'],
         seats: 5,
         fuelType: 'Petrol',
         transmission: 'Automatic',
@@ -142,10 +136,9 @@ const cars = [
     {
         name: 'City',
         brand: 'Honda',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/134287/city-exterior-right-front-three-quarter-2.jpeg',
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/134287/city-exterior-right-rear-three-quarter.jpeg',
-        ],
+        year: 2024,
+        description: 'Honda\'s iconic mid-size sedan known for its bulletproof reliability and refined driving experience. Powered by a 1.5L i-VTEC engine (121 PS) paired with a CVT automatic. Features Honda SENSING ADAS, LaneWatch camera, Honda Connect app, wireless CarPlay, and LED headlamps. The City offers a premium cabin with excellent rear-seat comfort and a massive 506L boot.',
+        images: ['/cars/honda-city.png'],
         seats: 5,
         fuelType: 'Petrol',
         transmission: 'Automatic',
@@ -161,9 +154,9 @@ const cars = [
     {
         name: 'Ciaz',
         brand: 'Maruti Suzuki',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/46091/ciaz-exterior-right-front-three-quarter.jpeg',
-        ],
+        year: 2022,
+        description: 'A spacious and fuel-efficient mid-size sedan from Nexa. The Ciaz features a 1.5L K15B Smart Hybrid petrol engine (105 PS) with SHVS mild-hybrid technology for exceptional 20.65 km/l mileage. Highlights include SmartPlay infotainment, auto climate control, cruise control, and rear AC vents. Its elegant design and spacious 510L boot make it ideal for family travel.',
+        images: ['/cars/ciaz.png'],
         seats: 5,
         fuelType: 'Petrol',
         transmission: 'Manual',
@@ -181,10 +174,9 @@ const cars = [
     {
         name: 'Creta',
         brand: 'Hyundai',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/106815/creta-exterior-right-front-three-quarter-4.jpeg',
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/106815/creta-exterior-right-rear-three-quarter.jpeg',
-        ],
+        year: 2024,
+        description: 'India\'s best-selling SUV, now in its 2nd generation with bold parametric design. Available with 1.5L NA petrol (115 PS), 1.5L diesel (116 PS), or 1.5L Turbo GDi (160 PS). Features ADAS Level 2, panoramic sunroof, ventilated seats, Bose premium audio, 360-degree camera, and BlueLink connected car. The flagship SUV in the compact segment.',
+        images: ['/cars/creta.png'],
         seats: 5,
         fuelType: 'Diesel',
         transmission: 'Automatic',
@@ -200,10 +192,9 @@ const cars = [
     {
         name: 'Seltos',
         brand: 'Kia',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/174323/seltos-exterior-right-front-three-quarter.jpeg',
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/174323/seltos-exterior-right-rear-three-quarter.jpeg',
-        ],
+        year: 2024,
+        description: 'Kia\'s feature-loaded compact SUV with segment-first technologies. Choose from 1.5L NA petrol, 1.5L diesel, or 1.5L Turbo GDi (160 PS) with a 7-speed DCT. Packed with ADAS, ventilated seats, Bose surround sound, panoramic sunroof, 360-degree camera, and Kia Connect. The tiger-nose grille and bold star-map LED DRLs make it instantly recognizable.',
+        images: ['/cars/seltos.png'],
         seats: 5,
         fuelType: 'Petrol',
         transmission: 'Automatic',
@@ -219,10 +210,9 @@ const cars = [
     {
         name: 'Nexon',
         brand: 'Tata',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/141867/nexon-exterior-right-front-three-quarter-71.jpeg',
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/141867/nexon-exterior-right-rear-three-quarter.jpeg',
-        ],
+        year: 2024,
+        description: 'India\'s first 5-star Global NCAP rated car in its segment. The Nexon features a 1.2L Turbo Revotron engine (120 PS) and an available EV variant. Highlights include a 10.25-inch floating touchscreen, Harman audio, ventilated seats, air purifier, and iRA connected car tech. The dual-tone design with coupe-like roofline is bold and distinctive.',
+        images: ['/cars/nexon.png'],
         seats: 5,
         fuelType: 'Petrol',
         transmission: 'Manual',
@@ -238,10 +228,9 @@ const cars = [
     {
         name: 'Brezza',
         brand: 'Maruti Suzuki',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/132921/brezza-exterior-right-front-three-quarter-2.jpeg',
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/132921/brezza-exterior-right-rear-three-quarter.jpeg',
-        ],
+        year: 2024,
+        description: 'The all-new Brezza — bold, stylish, and loaded with tech. Powered by a 1.5L K15C DualJet engine (103 PS) with mild-hybrid tech delivering 20.15 km/l. Features include HUD display, wireless charging, 360-degree camera, electric sunroof, Suzuki Connect, and 6 airbags. The aggressive design with muscular wheel arches and dual-tone roof commands attention.',
+        images: ['/cars/brezza.png'],
         seats: 5,
         fuelType: 'Petrol',
         transmission: 'Automatic',
@@ -257,10 +246,9 @@ const cars = [
     {
         name: 'Scorpio N',
         brand: 'Mahindra',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/130583/scorpio-n-exterior-right-front-three-quarter-75.jpeg',
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/130583/scorpio-n-exterior-right-rear-three-quarter.jpeg',
-        ],
+        year: 2024,
+        description: 'The Big Daddy of SUVs — reborn with a new platform and modern tech. Choose from a 2.0L mStallion turbo-petrol (200 PS) or 2.2L mHawk diesel (175 PS), both available with 4x4. Features include AdrenoX connected car, Sony 3D surround sound, dual-zone climate, sunroof, and terrain response modes. Built for those who command the road.',
+        images: ['/cars/scorpio-n.png'],
         seats: 7,
         fuelType: 'Diesel',
         transmission: 'Automatic',
@@ -276,10 +264,9 @@ const cars = [
     {
         name: 'Thar',
         brand: 'Mahindra',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/40087/thar-exterior-right-front-three-quarter-76.jpeg',
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/40087/thar-exterior-right-rear-three-quarter.jpeg',
-        ],
+        year: 2024,
+        description: 'India\'s iconic off-roader with true 4x4 capability. Available with a 2.0L mStallion turbo-petrol (152 PS) or 2.2L mHawk diesel (132 PS), both with shift-on-fly 4WD. Features include a convertible roof, 10.25-inch touchscreen, cruise control, and adventure-ready build with 226mm ground clearance. The Thar is built for those who live for the thrill.',
+        images: ['/cars/thar.png'],
         seats: 4,
         fuelType: 'Diesel',
         transmission: 'Manual',
@@ -295,10 +282,9 @@ const cars = [
     {
         name: 'XUV700',
         brand: 'Mahindra',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/42355/xuv700-exterior-right-front-three-quarter.jpeg',
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/42355/xuv700-exterior-right-rear-three-quarter.jpeg',
-        ],
+        year: 2024,
+        description: 'Mahindra\'s flagship SUV with segment-first ADAS and premium features. Powered by a 2.0L mStallion turbo-petrol (200 PS) or 2.2L mHawk diesel (185 PS) with optional AWD. Features include ADAS Level 1, panoramic sunroof, Sony 3D surround sound, flush door handles, AdrenoX with Alexa, and a massive 10.25-inch dual-screen setup. The XUV700 is where technology meets adventure.',
+        images: ['/cars/xuv700.png'],
         seats: 7,
         fuelType: 'Diesel',
         transmission: 'Automatic',
@@ -316,10 +302,9 @@ const cars = [
     {
         name: 'Fortuner',
         brand: 'Toyota',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/44709/fortuner-exterior-right-front-three-quarter-19.jpeg',
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/44709/fortuner-exterior-left-rear-three-quarter.jpeg',
-        ],
+        year: 2024,
+        description: 'The king of body-on-frame SUVs in India. The Fortuner packs a 2.8L D-4D diesel engine (204 PS, 500 Nm) with 4x4 and a 6-speed automatic. Known for its bulletproof reliability, commanding road presence, and go-anywhere capability. Features include JBL premium audio, cooled seats, wireless charging, and connected car technology. The Fortuner Legender adds sporty styling with a unique front design.',
+        images: ['https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?auto=format&fit=crop&w=800&q=80'],
         seats: 7,
         fuelType: 'Diesel',
         transmission: 'Automatic',
@@ -335,9 +320,9 @@ const cars = [
     {
         name: 'Innova Crysta',
         brand: 'Toyota',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/140809/innova-crysta-exterior-right-front-three-quarter.jpeg',
-        ],
+        year: 2024,
+        description: 'India\'s most trusted premium MPV that redefined the segment. Powered by a 2.4L diesel (150 PS) or 2.7L petrol (166 PS). The Crysta seats 7 in executive comfort with captain seats, ambient lighting, rear AC, and a premium cabin. Known for its unmatched reliability, smooth ride, and spacious interior, it\'s the perfect choice for family road trips and airport transfers.',
+        images: ['https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80'],
         seats: 7,
         fuelType: 'Diesel',
         transmission: 'Automatic',
@@ -353,9 +338,9 @@ const cars = [
     {
         name: 'Hector',
         brand: 'MG',
-        images: [
-            'https://imgd.aeplcdn.com/664x374/n/cw/ec/130583/hector-exterior-right-front-three-quarter.jpeg',
-        ],
+        year: 2024,
+        description: 'The Internet Car from MG with a massive 14-inch portrait touchscreen. Available with a 1.5L turbo-petrol (143 PS) or 2.0L diesel (170 PS). Loaded with i-SMART connected car tech powered by Jio, panoramic sunroof, ventilated seats, 360-degree camera, and Infinity premium audio. The Hector\'s bold design with split headlamps and imposing grille makes a strong statement on the road.',
+        images: ['https://images.unsplash.com/photo-1617654112368-307921291f42?auto=format&fit=crop&w=800&q=80'],
         seats: 5,
         fuelType: 'Petrol',
         transmission: 'Automatic',

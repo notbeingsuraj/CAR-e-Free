@@ -11,6 +11,15 @@ const carSchema = new mongoose.Schema({
         required: [true, 'Please add a brand'],
         trim: true,
     },
+    year: {
+        type: Number,
+        default: 2024,
+    },
+    description: {
+        type: String,
+        trim: true,
+        default: '',
+    },
     images: [{
         type: String,
     }],

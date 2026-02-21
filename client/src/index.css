@@ -33,6 +33,7 @@
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.02);
   --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.06);
   --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.08);
+  --shadow-neu: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 4px rgba(0, 0, 0, 0.02);
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -268,15 +269,16 @@ textarea {
 /* ===== CARDS ===== */
 .card {
   background: var(--surface);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  border: none;
   overflow: hidden;
-  transition: var(--transition-slow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: var(--shadow-neu);
 }
 
 .card:hover {
-  border-color: #D4D4D4;
-  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
 }
 
 .card-body {
@@ -519,8 +521,8 @@ textarea {
 /* ===== GRID LAYOUTS ===== */
 .car-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
 }
 
 .stats-grid {

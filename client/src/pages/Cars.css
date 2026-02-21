@@ -8,16 +8,26 @@
 .filter-toggle {
     display: none;
     margin-bottom: 16px;
+    grid-column: 1 / -1;
 }
 
 .filter-sidebar {
     background: var(--surface);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     padding: 20px;
-    border: 1px solid var(--border);
+    border: none;
+    box-shadow: var(--shadow-neu);
     height: fit-content;
     position: sticky;
     top: calc(var(--navbar-height) + 16px);
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.cars-main {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
 }
 
 .filter-header {
@@ -85,9 +95,14 @@
         z-index: 100;
         border-radius: 0;
         overflow-y: auto;
+        grid-column: 1;
     }
 
     .filter-sidebar.open {
         display: block;
+    }
+
+    .cars-main {
+        grid-column: 1;
     }
 }
