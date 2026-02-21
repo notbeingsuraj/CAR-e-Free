@@ -7,21 +7,55 @@ const router = express.Router();
 
 /**
  * SIGNUP
- * Creates user if not exists
+ * POST /api/auth/signup
+ * Body: { name, email, password }
  */
 router.post("/signup", async (req, res) => {
     try {
-        const { phone } = req.body;
+        const { name, email, password } = req.body;
 
-        // TEMP: no DB, just return success
-        return res.json({
+        // Validate required fields
+        if (!email || !password || !name) {
+            return res.status(400).json({
+                success: false,
+                msg: "Please provide name, email, and password"
+            });
+        }
+
+        // Check if user already exists
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({
+                success: false,
+                msg: "User with this email already exists"
+            });
+        }
+
+        // Create user (password is hashed by the pre-save hook)
+        const user = await User.create({ name, email, password });
+
+        const token = jwt.sign(
+            { id: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: "7d" }
+        );
+
+        res.status(201).json({
             success: true,
-            user: { phone },
-            token: "temp_debug_token" // Adding a temp token to prevent frontend crash on localStorage set
+            token,
+            user: {
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                isVerified: user.isVerified,
+            }
         });
     } catch (err) {
-        return res.status(500).json({
+        console.error("Signup error:", err);
+        res.status(500).json({
             success: false,
+            msg: "Server error during signup",
             error: err.message
         });
     }
@@ -29,15 +63,36 @@ router.post("/signup", async (req, res) => {
 
 /**
  * LOGIN
- * Finds user by phone
+ * POST /api/auth/login
+ * Body: { email, password }
  */
 router.post("/login", async (req, res) => {
     try {
-        const { phone } = req.body;
+        const { email, password } = req.body;
 
-        const user = await User.findOne({ phone });
+        if (!email || !password) {
+            return res.status(400).json({
+                success: false,
+                msg: "Please provide email and password"
+            });
+        }
+
+        // Find user and include password field
+        const user = await User.findOne({ email }).select("+password");
         if (!user) {
-            return res.status(404).json({ msg: "User not found" });
+            return res.status(401).json({
+                success: false,
+                msg: "Invalid email or password"
+            });
+        }
+
+        // Check password
+        const isMatch = await user.matchPassword(password);
+        if (!isMatch) {
+            return res.status(401).json({
+                success: false,
+                msg: "Invalid email or password"
+            });
         }
 
         const token = jwt.sign(
@@ -46,22 +101,41 @@ router.post("/login", async (req, res) => {
             { expiresIn: "7d" }
         );
 
-        res.json({ token, user });
-
+        res.json({
+            success: true,
+            token,
+            user: {
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                isVerified: user.isVerified,
+            }
+        });
     } catch (err) {
-        res.status(500).json({ msg: "Server error" });
+        console.error("Login error:", err);
+        res.status(500).json({
+            success: false,
+            msg: "Server error during login",
+            error: err.message
+        });
     }
 });
 
 /**
- * GET USER
- * Returns current user data
+ * GET ME
+ * GET /api/auth/me
+ * Requires auth middleware
  */
 router.get("/me", auth, async (req, res) => {
     try {
         const user = await User.findById(req.user);
+        if (!user) {
+            return res.status(404).json({ msg: "User not found" });
+        }
         res.json(user);
     } catch (err) {
+        console.error("Get user error:", err);
         res.status(500).json({ msg: "Server error" });
     }
 });
